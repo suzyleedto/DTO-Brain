@@ -88,4 +88,6 @@ if st.button("Generate Problem Statement"):
     
     thread_messages = client.beta.threads.messages.list(st.session_state.thread.id)
     
-    st.text_area(label="How Might We Statements:", value = thread_messages)
+    for content_part in thread_messages.content:
+        message_text = content_part.text.value
+        st.markdown(message_text)
