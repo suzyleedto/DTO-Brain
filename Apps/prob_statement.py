@@ -90,6 +90,6 @@ if st.button("Generate Problem Statement"):
    
     
     for thread_message in thread_messages:
-      st.markdown(thread_message+"\n================================\n")
+      st.markdown(thread_message)
       message_text = thread_message.content[0].text.value
       #st.markdown(message_text)
