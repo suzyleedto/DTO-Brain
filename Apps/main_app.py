@@ -2,12 +2,11 @@ from pathlib import Path
 
 import streamlit as st
 
-with st.echo("below"):
-    from st_pages import Page, add_page_title, show_pages
+from st_pages import Page, add_page_title, show_pages
 
-    "## Declaring the pages in your app:"
+"## Declaring the pages in your app:"
 
-    show_pages(
+show_pages(
         [
             Page("Apps/main_app.py", "Home", "🏠"),
             # Can use :<icon-name>: or the actual icon
@@ -16,4 +15,4 @@ with st.echo("below"):
         ]
     )
 
-    add_page_title()  # Optional method to add title and icon to current page
+add_page_title("Welcome to your DTO Toolbox")  # Optional method to add title and icon to current page
