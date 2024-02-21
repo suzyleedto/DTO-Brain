@@ -78,14 +78,14 @@ if st.button("Generate Problem Statement"):
     )
 
         
-    while run.status != 'completed':
-        run = openai.beta.threads.runs.retrieve(
+    while st.session_state.run.status != 'completed':
+        st.session_state.run = openai.beta.threads.runs.retrieve(
         thread_id=st.session_state.thread.id,
-        run_id=run.id
+        run_id=st.session_state.run.id
     )
-    print(run.status)
+    print(st.session_state.run.status)
     time.sleep(5)
     
-    thread_messages = client.beta.threads.messages.list(t.session_state.thread.id)
+    thread_messages = client.beta.threads.messages.list(st.session_state.thread.id)
     
     st.text_area(label="How Might We Statements:", value = thread_messages)
