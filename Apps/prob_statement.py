@@ -34,14 +34,12 @@ st.set_page_config(page_title="Problem Statement here")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.header("Target Audience:")
-    st.subheader("Who's problem are you trying to solve?")
-    txt_who = st.text_area(label = "Target Audience",placeholder="Grocery shoppers")
+    st.subheader("Target Audience:")
+    txt_who = st.text_area(label = "Whose problem are you trying to solve?",placeholder="Grocery shoppers")
    
 
 with col2:
-   st.header("Problem:")
-   st.subheader("Write a short description of the problem")
-   txt_what = st.text_area(label = "Problem", placeholder="Find the best deals in online groceries")
+   st.subheader("Problem")
+   txt_what = st.text_area(label = "Write a short description of the problem", placeholder="Find the best deals in online groceries")
    
 st.button("Generate Problem Statement")
