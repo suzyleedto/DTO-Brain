@@ -85,4 +85,10 @@ if st.button("Generate Problem Statement"):
       st.markdown(message_text)
       st.markdown("\n===========================\n")
       #st.markdown(message_text)
+      
     
+    if st.button("Generate new Problem Statements"):
+    # Clear values from *all* all in-memory and on-disk data caches:
+    # i.e. clear values from both square and cube
+        st.cache_data.clear()
+        st.rerun()
