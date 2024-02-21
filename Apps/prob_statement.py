@@ -69,7 +69,7 @@ if st.button("Generate Problem Statement"):
     )
 
         
-    if st.session_state.run.status != 'completed':
+    while st.session_state.run.status != 'completed':
         st.session_state.run = openai.beta.threads.runs.retrieve(
         thread_id=st.session_state.thread.id,
         run_id=st.session_state.run.id
@@ -80,7 +80,10 @@ if st.button("Generate Problem Statement"):
    
     
     for thread_message in thread_messages:
-      st.markdown(thread_message)
-      st.markdown("\n===========================\n")
+   
       message_text = thread_message.content[0].text.value
+      st.markdown(message_text)
+      st.markdown("\n===========================\n")
       #st.markdown(message_text)
+    
+    st.rerun()
