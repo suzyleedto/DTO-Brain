@@ -42,4 +42,40 @@ with col2:
    st.subheader("Problem")
    txt_what = st.text_area(label = "Write a short description of the problem", placeholder="Find the best deals in online groceries")
    
-st.button("Generate Problem Statement")
+
+
+# Initialize OpenAI assistant
+if "assistant" not in st.session_state:
+    openai.api_key = st.secrets["OPENAI_API_KEY"]
+    st.session_state.assistant = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT"])
+    prompt = "Create How Might We Statements for Target Audience: "+txt_who +" and Problem: "+ txt_what
+    st.session_state.thread = client.beta.threads.create(
+        metadata={'session_id': st.session_state.session_id}
+    )
+
+if st.button("Generate Problem Statement"):
+    message_data = {
+        "thread_id": st.session_state.thread.id,
+        "role": "user",
+        "content": prompt
+    }
+
+    st.session_state.messages = client.beta.threads.messages.create(**message_data)
+    
+    st.session_state.run = client.beta.threads.runs.create(
+        thread_id=st.session_state.thread.id,
+        assistant_id=st.session_state.assistant.id,
+    )
+
+        
+    while run.status != 'completed':
+        run = openai.beta.threads.runs.retrieve(
+        thread_id=st.session_state.thread.id,
+        run_id=run.id
+    )
+    print(run.status)
+    time.sleep(5)
+    
+    thread_messages = client.beta.threads.messages.list(t.session_state.thread.id)
+    
+    st.text_area(label="How Might We Statements:", value = thread_messages)
