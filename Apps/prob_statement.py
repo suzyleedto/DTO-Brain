@@ -86,4 +86,3 @@ if st.button("Generate Problem Statement"):
       st.markdown("\n===========================\n")
       #st.markdown(message_text)
     
-    st.rerun()
