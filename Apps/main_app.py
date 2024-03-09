@@ -13,6 +13,8 @@ show_pages(
             # Can use :<icon-name>: or the actual icon
             Page("Apps/prob_statement.py", "Problem Statement Generator", "✏️"),
             # The pages appear in the order you pass them
+            Page("Apps/scamper.py", "Brainwriting Assistant using SCAMPER", "💡"),
+            # The pages appear in the order you pass them
         ]
     )
 
