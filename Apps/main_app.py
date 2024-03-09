@@ -5,7 +5,8 @@ import streamlit as st
 from st_pages import Page, add_page_title, show_pages
 
 "## Welcome to your DTO Toolbox"
-"### -Problem Statement Generator"
+"-Problem Statement Generato"
+"-Brainwriting Assistant using SCAMPER"
 
 show_pages(
         [
