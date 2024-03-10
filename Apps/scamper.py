@@ -97,7 +97,7 @@ if st.button("Generate Ideas using SCAMPER"):
             #st.markdown(message_text)
           
     with tabC:
-        with status_c.update("Starting work..."):
+            status_c.update("Starting work...")
             if "assistant" not in st.session_state:
                 openai.api_key = st.secrets["OPENAI_API_KEY"]
                 st.session_state.assistant = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_C"])
