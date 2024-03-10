@@ -51,48 +51,47 @@ with col3:
 if st.button("Generate Ideas Using SCAMPER"):
     
     # Initialize OpenAI assistant
-    if "assistant" not in st.session_state:
-        openai.api_key = st.secrets["OPENAI_API_KEY"]
-        st.session_state.assistant = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_S"])
+    with st.status("Starting work...", expanded=False) as status_box:
+        if "assistant" not in st.session_state:
+            openai.api_key = st.secrets["OPENAI_API_KEY"]
+            st.session_state.assistant = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_S"])
 
-        st.session_state.thread = client.beta.threads.create(
-            metadata={'session_id': st.session_state.session_id}
-        )    
-    prompt = "Generate Ideas for this: \""""+txt_who +"\""" and Problem: \""""+ txt_what + " and Product: \""""+ txt_where+ "\""""
-    message_data = {
-        "thread_id": st.session_state.thread.id,
-        "role": "user",
-        "content": prompt
-    }
+            st.session_state.thread = client.beta.threads.create(
+                metadata={'session_id': st.session_state.session_id}
+            )    
+        prompt = "Generate Ideas for this: \""""+txt_who +"\""" and Problem: \""""+ txt_what + " and Product: \""""+ txt_where+ "\""""
+        message_data = {
+            "thread_id": st.session_state.thread.id,
+            "role": "user",
+            "content": prompt
+        }
 
-    st.session_state.messages = client.beta.threads.messages.create(**message_data)
-    
-    st.session_state.run = client.beta.threads.runs.create(
-        thread_id=st.session_state.thread.id,
-        assistant_id=st.session_state.assistant.id,
-    )
-
+        st.session_state.messages = client.beta.threads.messages.create(**message_data)
         
-    while st.session_state.run.status != 'completed':
-        st.session_state.run = openai.beta.threads.runs.retrieve(
-        thread_id=st.session_state.thread.id,
-        run_id=st.session_state.run.id
-    )
-    print(st.session_state.run.status)
-    
-    thread_messages = client.beta.threads.messages.list(st.session_state.thread.id)
-   
-    
-    for thread_message in thread_messages:
-   
-      message_text = thread_message.content[0].text.value
-      st.markdown(message_text)
-      st.markdown("\n===========================\n")
-      #st.markdown(message_text)
-      
-    
-    if st.button("Generate new Ideas"):
-    # Clear values from *all* all in-memory and on-disk data caches:
-    # i.e. clear values from both square and cube
-        st.cache_data.clear()
-        st.rerun()
+        st.session_state.run = client.beta.threads.runs.create(
+            thread_id=st.session_state.thread.id,
+            assistant_id=st.session_state.assistant.id,
+        )
+
+            
+        while st.session_state.run.status != 'completed':
+            time.sleep(5)
+            status_box.update(label=f"{run.status}...", state="running")
+            st.session_state.run = openai.beta.threads.runs.retrieve(
+            thread_id=st.session_state.thread.id,
+            run_id=st.session_state.run.id
+        )
+        print(st.session_state.run.status)
+        status_box.update(label="Complete", state="complete", expanded=True)
+        thread_messages = client.beta.threads.messages.list(st.session_state.thread.id)
+        message_text = thread_messages.data[0].content[0].text.value
+        st.markdown(message_text)
+        st.markdown("\n===========================\n")
+        #st.markdown(message_text)
+        
+        
+        if st.button("Generate new Ideas"):
+        # Clear values from *all* all in-memory and on-disk data caches:
+        # i.e. clear values from both square and cube
+            st.cache_data.clear()
+            st.rerun()
