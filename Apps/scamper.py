@@ -92,7 +92,7 @@ if st.button("Generate Ideas for S - Substitution"):
         #st.markdown(message_text)
         
         
-elif st.button("Generate Ideas Using C- Combine"):
+if st.button("Generate Ideas Using C- Combine"):
     
     # Initialize OpenAI assistant
     with st.status("Starting work...", expanded=False) as status_box:
