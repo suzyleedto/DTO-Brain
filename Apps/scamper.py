@@ -51,7 +51,7 @@ with st.container():
 
 
 if st.button("Generate Ideas using SCAMPER"):
-    tabS, tabC, tabA = st.tabs(["Substitute", "Combine", "Adapt"])
+    tabS, tabC, tabA = st.tabs(["Substitute", "Combine", "Adapt","Modify","Put to another context","Eliminate","Reverse"])
     # Initialize OpenAI assistant
     with tabS:
         with tabC:
