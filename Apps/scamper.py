@@ -31,26 +31,27 @@ if "retry_error" not in st.session_state:
     
 st.set_page_config(page_title="Brainwriting Assistant (SCAMPER)")
 
-col1, col2, col3 = st.columns(3)
+with st.container():
 
-with col1:
-    st.subheader("Target Audience:")
-    txt_who = st.text_area(label = "Whose problem are you trying to solve?",placeholder="Grocery shoppers")
-   
+    col1, col2, col3 = st.columns(3)
 
-with col2:
-   st.subheader("Problem")
-   txt_what = st.text_area(label = "Write a short description of the problem", placeholder="Find the best deals in online groceries")
-   
-with col3:
-   st.subheader("Product")
-   txt_where = st.text_area(label = "What product/service do you currently have or are planning to build?", placeholder="E-commerce Grocery Website")
-   
+    with col1:
+        st.subheader("Target Audience:")
+        txt_who = st.text_area(label = "Whose problem are you trying to solve?",placeholder="Grocery shoppers")
 
-tabS, tabC, tabA = st.tabs(["Substitute", "Combine", "Adapt"])
+    with col2:
+        st.subheader("Problem")
+        txt_what = st.text_area(label = "Write a short description of the problem", placeholder="Find the best deals in online groceries")
+    
+    with col3:
+        st.subheader("Product")
+        txt_where = st.text_area(label = "What product/service do you currently have or are planning to build?", placeholder="E-commerce Grocery Website")
+    
+
+
 
 if st.button("Generate Ideas using SCAMPER"):
-    
+    tabS, tabC, tabA = st.tabs(["Substitute", "Combine", "Adapt"])
     # Initialize OpenAI assistant
     with tabS:
         with st.status("Starting work...", expanded=False) as status_box:
@@ -92,6 +93,8 @@ if st.button("Generate Ideas using SCAMPER"):
             st.markdown(message_text)
             st.markdown("\n===========================\n")
             #st.markdown(message_text)
+            with tabC:
+                  st.status("Queued", expanded=False)
     with tabC:
         with st.status("Starting work...", expanded=False) as status_box:
             if "assistant" not in st.session_state:
