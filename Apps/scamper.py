@@ -122,13 +122,13 @@ if st.button("Generate Ideas using SCAMPER"):
                 
             while st.session_state.run.status != 'completed':
                 time.sleep(5)
-                status_box.update(label=f"{st.session_state.run.status}...", state="running")
+                status_c.update(label=f"{st.session_state.run.status}...", state="running")
                 st.session_state.run = openai.beta.threads.runs.retrieve(
                 thread_id=st.session_state.thread.id,
                 run_id=st.session_state.run.id
             )
             print(st.session_state.run.status)
-            status_box.update(label="Complete", state="complete", expanded=True)
+            status_c.update(label="Complete", state="complete", expanded=True)
             thread_messages = client.beta.threads.messages.list(st.session_state.thread.id)
             message_text = thread_messages.data[0].content[0].text.value
             st.markdown("### C-Combine\n")
