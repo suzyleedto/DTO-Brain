@@ -54,6 +54,8 @@ if st.button("Generate Ideas using SCAMPER"):
     tabS, tabC, tabA = st.tabs(["Substitute", "Combine", "Adapt"])
     # Initialize OpenAI assistant
     with tabS:
+        with tabC:
+            st.status("Queued", expanded=False)
         with st.status("Starting work...", expanded=False) as status_box:
             if "assistant" not in st.session_state:
                 openai.api_key = st.secrets["OPENAI_API_KEY"]
@@ -93,8 +95,7 @@ if st.button("Generate Ideas using SCAMPER"):
             st.markdown(message_text)
             st.markdown("\n===========================\n")
             #st.markdown(message_text)
-            with tabC:
-                  st.status("Queued", expanded=False)
+          
     with tabC:
         with st.status("Starting work...", expanded=False) as status_box:
             if "assistant" not in st.session_state:
