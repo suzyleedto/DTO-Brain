@@ -76,7 +76,7 @@ if st.button("Generate Ideas Using SCAMPER"):
             
         while st.session_state.run.status != 'completed':
             time.sleep(5)
-            status_box.update(label=f"{run.status}...", state="running")
+            status_box.update(label=f"{st.session_state.run.status}...", state="running")
             st.session_state.run = openai.beta.threads.runs.retrieve(
             thread_id=st.session_state.thread.id,
             run_id=st.session_state.run.id
