@@ -29,7 +29,7 @@ if "retry_error" not in st.session_state:
     st.session_state.retry_error = 0
     
     
-st.set_page_config(page_title="Brainwriting Assistant (SCAMPER)")
+st.set_page_config(page_title="Brainstorming Buddy (SCAMPER)")
 
 with st.container():
 
@@ -56,6 +56,16 @@ if st.button("Generate Ideas using SCAMPER"):
     with tabS:
         with tabC:
             status_c = st.status("Queued", expanded=False)
+        with tabA:
+            status_a = st.status("Queued", expanded=False)
+        with tabM:
+            status_m = st.status("Queued", expanded=False)
+        with tabP:
+            status_p = st.status("Queued", expanded=False)
+        with tabE:
+            status_e = st.status("Queued", expanded=False)
+        with tabR:
+            status_r = st.status("Queued", expanded=False)          
         with st.status("Starting work...", expanded=False) as status_box:
             if "assistant" not in st.session_state:
                 openai.api_key = st.secrets["OPENAI_API_KEY"]
@@ -97,44 +107,79 @@ if st.button("Generate Ideas using SCAMPER"):
             #st.markdown(message_text)
           
     with tabC:
-            status_c.update(label ="Starting work...", expanded=False, state = "running")
-            if "assistant" not in st.session_state:
-                openai.api_key = st.secrets["OPENAI_API_KEY"]
-                st.session_state.assistant = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_C"])
-
-                st.session_state.thread = client.beta.threads.create(
-                    metadata={'session_id': st.session_state.session_id}
-                )    
-            prompt = "Generate Ideas for this: \""""+txt_who +"\""" and Problem: \""""+ txt_what + " and Product: \""""+ txt_where+ "\""""
-            message_data = {
+        status_c.update(label ="Starting work...", expanded=False, state = "running")
+        if "assistant" not in st.session_state:
+            openai.api_key = st.secrets["OPENAI_API_KEY"]
+            st.session_state.assistant = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_C"])
+            st.session_state.thread = client.beta.threads.create(
+                metadata={'session_id': st.session_state.session_id}
+            )    
+        prompt = "Generate Ideas for this: \""""+txt_who +"\""" and Problem: \""""+ txt_what + " and Product: \""""+ txt_where+ "\""""
+        message_data = {
                 "thread_id": st.session_state.thread.id,
                 "role": "user",
                 "content": prompt
             }
 
-            st.session_state.messages = client.beta.threads.messages.create(**message_data)
+        st.session_state.messages = client.beta.threads.messages.create(**message_data)
             
-            st.session_state.run = client.beta.threads.runs.create(
-                thread_id=st.session_state.thread.id,
-                assistant_id=st.session_state.assistant.id,
-            )
+        st.session_state.run = client.beta.threads.runs.create(
+            thread_id=st.session_state.thread.id,
+            assistant_id=st.session_state.assistant.id,            )
 
                 
+        while st.session_state.run.status != 'completed':
+            time.sleep(5)
+            status_c.update(label=f"{st.session_state.run.status}...", state="running")
+            st.session_state.run = openai.beta.threads.runs.retrieve(
+                thread_id=st.session_state.thread.id,
+                run_id=st.session_state.run.id
+            )
+        print(st.session_state.run.status)
+        status_c.update(label="Complete", state="complete", expanded=True)
+        thread_messages = client.beta.threads.messages.list(st.session_state.thread.id)
+        message_text = thread_messages.data[0].content[0].text.value
+        st.markdown("### C-Combine\n")
+        st.markdown("#### _The combined technique tends to analyze the possibility of merging two or more ideas, stages of the process or product in one single more efficient output._\n")
+        st.markdown(message_text)
+        st.markdown("\n===========================\n")
+            #st.markdown(message_text)
+    with tabA:
+            status_a.update(label ="Starting work...", expanded=False, state = "running")
+            if "assistant" not in st.session_state:
+                openai.api_key = st.secrets["OPENAI_API_KEY"]
+                st.session_state.assistant = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_A"])
+                st.session_state.thread = client.beta.threads.create(
+                    metadata={'session_id': st.session_state.session_id}
+                )    
+            prompt = "Generate Ideas for this: \""""+txt_who +"\""" and Problem: \""""+ txt_what + " and Product: \""""+ txt_where+ "\""""
+            message_data = {
+                    "thread_id": st.session_state.thread.id,
+                    "role": "user",
+                    "content": prompt
+                }
+
+            st.session_state.messages = client.beta.threads.messages.create(**message_data)
+                
+            st.session_state.run = client.beta.threads.runs.create(
+                thread_id=st.session_state.thread.id,
+                assistant_id=st.session_state.assistant.id,            )
+
+                    
             while st.session_state.run.status != 'completed':
                 time.sleep(5)
                 status_c.update(label=f"{st.session_state.run.status}...", state="running")
                 st.session_state.run = openai.beta.threads.runs.retrieve(
-                thread_id=st.session_state.thread.id,
-                run_id=st.session_state.run.id
-            )
+                    thread_id=st.session_state.thread.id,
+                    run_id=st.session_state.run.id
+                )
             print(st.session_state.run.status)
             status_c.update(label="Complete", state="complete", expanded=True)
             thread_messages = client.beta.threads.messages.list(st.session_state.thread.id)
             message_text = thread_messages.data[0].content[0].text.value
-            st.markdown("### C-Combine\n")
-            st.markdown("#### _The combined technique tends to analyze the possibility of merging two or more ideas, stages of the process or product in one single more efficient output._\n")
+            st.markdown("### A-Adapt\n")
+            st.markdown("#### _Adapt refers to a brainstorming discussion that aims to adjust or tweak product or service for a better output._\n")
             st.markdown(message_text)
             st.markdown("\n===========================\n")
-            #st.markdown(message_text)
-        
-        
+                #st.markdown(message_text)       
+            
