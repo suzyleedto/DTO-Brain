@@ -4,6 +4,14 @@ import streamlit as st
 
 from st_pages import Page, add_page_title, show_pages
 
+st.set_page_config(
+    page_title="DTO Toolkit Home",
+    page_icon="🛠️",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+
 add_page_title()
 
 show_pages(
@@ -14,7 +22,7 @@ show_pages(
             # The pages appear in the order you pass them
             Page("pages/scamper.py", "Brainstorming Buddy using SCAMPER","💡"),
             # The pages appear in the order you pass them
-            Page("pages/proto_persona.py","Proto-Persona Creator","c"),
+            Page("pages/proto_persona.py","Proto-Persona Creator","🧑‍🤝‍🧑"),
             # The pages appear in the order you pass them
             
         ]
