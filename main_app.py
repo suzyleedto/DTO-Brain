@@ -2,6 +2,13 @@ from pathlib import Path
 
 import streamlit as st
 
+st.set_page_config(
+    page_title="DTO Toolkit Home",
+    page_icon="🛠️",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 from st_pages import Page, add_page_title, show_pages
 
 st.set_page_config(
