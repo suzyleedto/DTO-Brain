@@ -109,12 +109,12 @@ if st.button("Generate Ideas using SCAMPER"):
           
     with tabC:
         status_c.update(label ="Starting work...", expanded=False, state = "running")
-        if "assistant_C" not in st.session_state:
-            openai.api_key = st.secrets["OPENAI_API_KEY"]
-            st.session_state.assistant_C = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_C"])
-            st.session_state.thread = client.beta.threads.create(
-                metadata={'session_id': st.session_state.session_id}
-            )    
+        
+        openai.api_key = st.secrets["OPENAI_API_KEY"]
+        st.session_state.assistant = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_C"])
+        st.session_state.thread = client.beta.threads.create(
+            metadata={'session_id': st.session_state.session_id}
+         )    
         prompt = "Generate Ideas for this: \""""+txt_who +"\""" and Problem: \""""+ txt_what + " and Product: \""""+ txt_where+ "\""""
         message_data = {
                 "thread_id": st.session_state.thread.id,
@@ -126,7 +126,7 @@ if st.button("Generate Ideas using SCAMPER"):
             
         st.session_state.run = client.beta.threads.runs.create(
             thread_id=st.session_state.thread.id,
-            assistant_id=st.session_state.assistant_C.id,            )
+            assistant_id=st.session_state.assistant.id,            )
 
                 
         while st.session_state.run.status != 'completed':
@@ -147,11 +147,11 @@ if st.button("Generate Ideas using SCAMPER"):
             #st.markdown(message_text)
     with tabA:
             status_a.update(label ="Starting work...", expanded=False, state = "running")
-            if "assistant_A" not in st.session_state:
-                openai.api_key = st.secrets["OPENAI_API_KEY"]
-                st.session_state.assistant_A = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_A"])
-                st.session_state.thread = client.beta.threads.create(
-                    metadata={'session_id': st.session_state.session_id}
+         
+            openai.api_key = st.secrets["OPENAI_API_KEY"]
+            st.session_state.assistant_A = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_A"])
+            st.session_state.thread = client.beta.threads.create(
+                metadata={'session_id': st.session_state.session_id}
                 )    
             prompt = "Generate Ideas for this: \""""+txt_who +"\""" and Problem: \""""+ txt_what + " and Product: \""""+ txt_where+ "\""""
             message_data = {
@@ -164,7 +164,7 @@ if st.button("Generate Ideas using SCAMPER"):
                 
             st.session_state.run = client.beta.threads.runs.create(
                 thread_id=st.session_state.thread.id,
-                assistant_id=st.session_state.assistant_A.id,            )
+                assistant_id=st.session_state.assistant.id,            )
 
                     
             while st.session_state.run.status != 'completed':
