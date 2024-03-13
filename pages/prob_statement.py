@@ -7,6 +7,19 @@ import pandas as pd
 import io
 from openai import OpenAI
 
+st.set_page_config(
+    page_title="Problem Statement Generator",
+    page_icon="✏️",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://www.extremelycoolapp.com/help',
+        'Report a bug': "https://www.extremelycoolapp.com/bug",
+        'About': "# This is a header. This is an *extremely* cool app!"
+    }
+)
+
+
 # Initialize OpenAI client
 client = OpenAI()
 

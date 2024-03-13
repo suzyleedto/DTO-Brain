@@ -4,7 +4,7 @@ import streamlit as st
 
 from st_pages import Page, add_page_title, show_pages
 
-add_page_title("Welcome to your DTO Toolbox")  # Optional method to add title and icon to current page
+
 show_pages(
         [
             Page("main_app.py","DTO Toolbox Home","🏠"),
