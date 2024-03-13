@@ -147,9 +147,9 @@ if st.button("Generate Ideas using SCAMPER"):
             #st.markdown(message_text)
     with tabA:
             status_a.update(label ="Starting work...", expanded=False, state = "running")
-            if "assistant" not in st.session_state:
+            if "assistant_A" not in st.session_state:
                 openai.api_key = st.secrets["OPENAI_API_KEY"]
-                st.session_state.assistant = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_A"])
+                st.session_state.assistant_A = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_A"])
                 st.session_state.thread = client.beta.threads.create(
                     metadata={'session_id': st.session_state.session_id}
                 )    
@@ -164,7 +164,7 @@ if st.button("Generate Ideas using SCAMPER"):
                 
             st.session_state.run = client.beta.threads.runs.create(
                 thread_id=st.session_state.thread.id,
-                assistant_id=st.session_state.assistant.id,            )
+                assistant_id=st.session_state.assistant_A.id,            )
 
                     
             while st.session_state.run.status != 'completed':
@@ -185,9 +185,9 @@ if st.button("Generate Ideas using SCAMPER"):
                 #st.markdown(message_text)       
     with tabM:
             status_m.update(label ="Starting work...", expanded=False, state = "running")
-            if "assistant" not in st.session_state:
+            if "assistant_M" not in st.session_state:
                 openai.api_key = st.secrets["OPENAI_API_KEY"]
-                st.session_state.assistant = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_M"])
+                st.session_state.assistant_M = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_M"])
                 st.session_state.thread = client.beta.threads.create(
                     metadata={'session_id': st.session_state.session_id}
                 )    
@@ -202,7 +202,7 @@ if st.button("Generate Ideas using SCAMPER"):
                 
             st.session_state.run = client.beta.threads.runs.create(
                 thread_id=st.session_state.thread.id,
-                assistant_id=st.session_state.assistant.id,            )
+                assistant_id=st.session_state.assistant_M.id,            )
 
                     
             while st.session_state.run.status != 'completed':
@@ -223,9 +223,9 @@ if st.button("Generate Ideas using SCAMPER"):
                 #st.markdown(message_text)                  
     with tabP:
             status_p.update(label ="Starting work...", expanded=False, state = "running")
-            if "assistant" not in st.session_state:
+            if "assistant_P" not in st.session_state:
                 openai.api_key = st.secrets["OPENAI_API_KEY"]
-                st.session_state.assistant = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_P"])
+                st.session_state.assistant_P = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_P"])
                 st.session_state.thread = client.beta.threads.create(
                     metadata={'session_id': st.session_state.session_id}
                 )    
@@ -240,7 +240,7 @@ if st.button("Generate Ideas using SCAMPER"):
                 
             st.session_state.run = client.beta.threads.runs.create(
                 thread_id=st.session_state.thread.id,
-                assistant_id=st.session_state.assistant.id,            )
+                assistant_id=st.session_state.assistant_P.id,            )
 
                     
             while st.session_state.run.status != 'completed':
@@ -261,9 +261,9 @@ if st.button("Generate Ideas using SCAMPER"):
                 #st.markdown(message_text)  
     with tabE:
             status_e.update(label ="Starting work...", expanded=False, state = "running")
-            if "assistant" not in st.session_state:
+            if "assistant_E" not in st.session_state:
                 openai.api_key = st.secrets["OPENAI_API_KEY"]
-                st.session_state.assistant = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_E"])
+                st.session_state.assistant_E = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_E"])
                 st.session_state.thread = client.beta.threads.create(
                     metadata={'session_id': st.session_state.session_id}
                 )    
@@ -278,7 +278,7 @@ if st.button("Generate Ideas using SCAMPER"):
                 
             st.session_state.run = client.beta.threads.runs.create(
                 thread_id=st.session_state.thread.id,
-                assistant_id=st.session_state.assistant.id,            )
+                assistant_id=st.session_state.assistant_E.id,            )
 
                     
             while st.session_state.run.status != 'completed':
@@ -299,9 +299,9 @@ if st.button("Generate Ideas using SCAMPER"):
                 #st.markdown(message_text)  
     with tabR:
             status_r.update(label ="Starting work...", expanded=False, state = "running")
-            if "assistant" not in st.session_state:
+            if "assistant_R" not in st.session_state:
                 openai.api_key = st.secrets["OPENAI_API_KEY"]
-                st.session_state.assistant = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_R"])
+                st.session_state.assistant_R = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT_SCAMPER_R"])
                 st.session_state.thread = client.beta.threads.create(
                     metadata={'session_id': st.session_state.session_id}
                 )    
@@ -316,7 +316,7 @@ if st.button("Generate Ideas using SCAMPER"):
                 
             st.session_state.run = client.beta.threads.runs.create(
                 thread_id=st.session_state.thread.id,
-                assistant_id=st.session_state.assistant.id,            )
+                assistant_id=st.session_state.assistant_R.id,            )
 
                     
             while st.session_state.run.status != 'completed':
