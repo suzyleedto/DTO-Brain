@@ -100,7 +100,7 @@ if st.button("Generate Ideas using SCAMPER"):
             status_box.update(label="Complete", state="complete", expanded=True)
             thread_messages = client.beta.threads.messages.list(st.session_state.thread.id)
             message_text = thread_messages.data[0].content[0].text.value
-            st.markdown(len(thread_messages)+"\n")
+            st.markdown(thread_messages+"\n")
             st.markdown("### S-Substitute\n")
             st.markdown("#### _The substitute technique tends to provide alternative solutions for decision-makers to choose different solutions in order to reach the final action._\n")
             st.markdown(message_text)
@@ -177,7 +177,7 @@ if st.button("Generate Ideas using SCAMPER"):
             print(st.session_state.run.status)
             status_a.update(label="Complete", state="complete", expanded=True)
             thread_messages = client.beta.threads.messages.list(st.session_state.thread.id)
-            message_text = thread_messages.data[0].content[2].text.value
+            message_text = thread_messages.data[0].content[0].text.value
             st.markdown("### A-Adapt\n")
             st.markdown("#### _Adapt refers to a brainstorming discussion that aims to adjust or tweak product or service for a better output._\n")
             st.markdown(message_text)
@@ -215,7 +215,7 @@ if st.button("Generate Ideas using SCAMPER"):
             print(st.session_state.run.status)
             status_m.update(label="Complete", state="complete", expanded=True)
             thread_messages = client.beta.threads.messages.list(st.session_state.thread.id)
-            message_text = thread_messages.data[0].content[3].text.value
+            message_text = thread_messages.data[0].content[0].text.value
             st.markdown("### M-Modify\n")
             st.markdown("#### _The modify technique refers to changing the process in a way that unleashes more innovative capabilities or solves problems._\n")
             st.markdown(message_text)
@@ -253,7 +253,7 @@ if st.button("Generate Ideas using SCAMPER"):
             print(st.session_state.run.status)
             status_p.update(label="Complete", state="complete", expanded=True)
             thread_messages = client.beta.threads.messages.list(st.session_state.thread.id)
-            message_text = thread_messages.data[0].content[4].text.value
+            message_text = thread_messages.data[0].content[0].text.value
             st.markdown("### P-Put to another context\n")
             st.markdown("#### _This technique concerns how to put the current product or process in another purpose or how to use the existing product to solve problems._\n")
             st.markdown(message_text)
@@ -291,7 +291,7 @@ if st.button("Generate Ideas using SCAMPER"):
             print(st.session_state.run.status)
             status_e.update(label="Complete", state="complete", expanded=True)
             thread_messages = client.beta.threads.messages.list(st.session_state.thread.id)
-            message_text = thread_messages.data[0].content[5].text.value
+            message_text = thread_messages.data[0].content[0].text.value
             st.markdown("### E-Eliminate\n")
             st.markdown("#### _This technique aims to identify the parts of the process that can be eliminated to improve the process product or service._\n")
             st.markdown(message_text)
@@ -329,7 +329,7 @@ if st.button("Generate Ideas using SCAMPER"):
             print(st.session_state.run.status)
             status_r.update(label="Complete", state="complete", expanded=True)
             thread_messages = client.beta.threads.messages.list(st.session_state.thread.id)
-            message_text = thread_messages.data[0].content[6].text.value
+            message_text = thread_messages.data[0].content[0].text.value
             st.markdown("### R-Reverse\n")
             st.markdown("#### _The reverse or rearrange technique aims to explore the innovative potential when changing the order of the process in the production line._\n")
             st.markdown(message_text)
