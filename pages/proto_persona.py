@@ -31,23 +31,28 @@ if "retry_error" not in st.session_state:
     
 st.set_page_config(page_title="Problem Statement here")
 
-col1, col2 = st.columns(2)
+col1, col2, col3= st.columns(3)
 
 with col1:
-    st.subheader("Target Audience:")
-    txt_who = st.text_area(label = "Whose problem are you trying to solve?",placeholder="Grocery shoppers")
+    st.subheader("Audience:")
+    txt_who = st.text_area(label = "Describe your audience/customers",placeholder="Grocery shoppers")
    
 
 with col2:
-   st.subheader("Problem")
-   txt_what = st.text_area(label = "Write a short description of the problem", placeholder="Find the best deals in online groceries")
-   
+   st.subheader("Product")
+   txt_what = st.text_area(label = "Write a short description of the product, service or business who caters to the proto-personas", placeholder="E-commerce Grocery App")
+
+with col3:
+   st.subheader("Assumptions and Constraints")
+   txt_limits = st.text_area(label = "What do you already know? (ie do you have information on customer demographics, do you have constraints?)", placeholder="personas must have monthly income less than P100,000 and male")
+
+     
 
 
-if st.button("Generate Problem Statement"):
-    
-    with st.status("Starting work...", expanded=False) as status_box:
-    # Initialize OpenAI assistant
+if st.button("Generate Proto-personas"):
+    with st.status("Starting work...", expanded=False) as status_box:    
+        # Initialize OpenAI assistant
+
         if "assistant" not in st.session_state:
             openai.api_key = st.secrets["OPENAI_API_KEY"]
             st.session_state.assistant = openai.beta.assistants.retrieve(st.secrets["OPENAI_ASSISTANT"])
@@ -55,7 +60,7 @@ if st.button("Generate Problem Statement"):
             st.session_state.thread = client.beta.threads.create(
                 metadata={'session_id': st.session_state.session_id}
             )    
-        prompt = "Create How Might We Statements for Target Audience: "+txt_who +" and Problem: "+ txt_what
+        prompt = "Create proto personas for _Target Audience_: "+txt_who +" and _Product_: "+ txt_what +" with these _Assumptions_"+txt_limits
         message_data = {
             "thread_id": st.session_state.thread.id,
             "role": "user",
@@ -82,7 +87,6 @@ if st.button("Generate Problem Statement"):
     
         status_box.update(label="Complete", state="complete", expanded=True)
         for thread_message in thread_messages:
-    
             message_text = thread_message.content[0].text.value
             st.markdown(message_text)
             st.markdown("\n===========================\n")
