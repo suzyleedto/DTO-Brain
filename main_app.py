@@ -13,7 +13,7 @@ show_pages(
             # The pages appear in the order you pass them
             Page("pages/scamper.py", "Brainstorming Buddy using SCAMPER", "💡"),
             # The pages appear in the order you pass them
-            Page("pages/proto_persona.py", "Proto-Persona Creator", "🧑‍🤝‍🧑")
+            Page(path = "pages/proto_persona.py", name = "Proto-Persona Creator", icon = "🧑‍🤝‍🧑")
             # The pages appear in the order you pass them
             
         ]
