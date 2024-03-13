@@ -7,6 +7,14 @@ import pandas as pd
 import io
 from openai import OpenAI
 
+st.set_page_config(
+    page_title="Proto Persona Creator",
+    page_icon="🧑‍🤝‍🧑",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+
 # Initialize OpenAI client
 client = OpenAI()
 
@@ -29,7 +37,6 @@ if "retry_error" not in st.session_state:
     st.session_state.retry_error = 0
     
     
-st.set_page_config(page_title="Problem Statement here")
 
 col1, col2, col3= st.columns(3)
 

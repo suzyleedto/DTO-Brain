@@ -7,6 +7,14 @@ import pandas as pd
 import io
 from openai import OpenAI
 
+st.set_page_config(
+    page_title="Brainstorming Buddy using SCAMPER",
+    page_icon="💡",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+
 # Initialize OpenAI client
 client = OpenAI()
 
@@ -29,7 +37,6 @@ if "retry_error" not in st.session_state:
     st.session_state.retry_error = 0
     
     
-st.set_page_config(page_title="Brainstorming Buddy (SCAMPER)")
 
 with st.container():
 

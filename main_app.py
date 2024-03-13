@@ -4,6 +4,7 @@ import streamlit as st
 
 from st_pages import Page, add_page_title, show_pages
 
+add_page_title()
 
 show_pages(
         [
@@ -13,7 +14,7 @@ show_pages(
             # The pages appear in the order you pass them
             Page("pages/scamper.py", "Brainstorming Buddy using SCAMPER","💡"),
             # The pages appear in the order you pass them
-            Page("pages/proto_persona.py","Proto-Persona Creator","🧑‍🤝‍🧑"),
+            Page("pages/proto_persona.py","Proto-Persona Creator","c"),
             # The pages appear in the order you pass them
             
         ]
