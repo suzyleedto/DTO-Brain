@@ -7,11 +7,11 @@ from st_pages import Page, add_page_title, show_pages
 
 show_pages(
         [
-            Page("main_app.py", "DTO Toolbox Home", "🛠️"),
+            Page(path="main_app.py", name = "DTO Toolbox Home", icon = "🛠️"),
             # Can use :<icon-name>: or the actual icon
-            Page("pages/prob_statement.py", "Problem Statement Generator", "✏️"),
+            Page(path="pages/prob_statement.py", name="Problem Statement Generator", icon ="✏️"),
             # The pages appear in the order you pass them
-            Page("pages/scamper.py", "Brainstorming Buddy using SCAMPER", "💡"),
+            Page(path="pages/scamper.py", name="Brainstorming Buddy using SCAMPER",icon = "💡"),
             # The pages appear in the order you pass them
             Page(path = "pages/proto_persona.py", name = "Proto-Persona Creator", icon = "🧑‍🤝‍🧑")
             # The pages appear in the order you pass them
