@@ -41,9 +41,6 @@ if "messages" not in st.session_state:
 if "retry_error" not in st.session_state:
     st.session_state.retry_error = 0
     
-    
-st.set_page_config(page_title="Problem Statement here")
-
 col1, col2 = st.columns(2)
 
 with col1:
