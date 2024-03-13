@@ -99,7 +99,7 @@ if st.button("Generate Ideas using SCAMPER"):
             print(st.session_state.run.status)
             status_box.update(label="Complete", state="complete", expanded=True)
             thread_messages = client.beta.threads.messages.list(st.session_state.thread.id)
-            message_text = thread_messages.data[0].content[0].text.value
+            message_text = thread_messages.data.content[0].text.value
             st.markdown("### S-Substitute\n")
             st.markdown("#### _The substitute technique tends to provide alternative solutions for decision-makers to choose different solutions in order to reach the final action._\n")
             st.markdown(message_text)
@@ -138,7 +138,7 @@ if st.button("Generate Ideas using SCAMPER"):
         print(st.session_state.run.status)
         status_c.update(label="Complete", state="complete", expanded=True)
         thread_messages = client.beta.threads.messages.list(st.session_state.thread.id)
-        message_text = thread_messages.data[2].content[0].text.value
+        message_text = thread_messages.data[0].content[0].text.value
         st.markdown("### C-Combine\n")
         st.markdown("#### _The combined technique tends to analyze the possibility of merging two or more ideas, stages of the process or product in one single more efficient output._\n")
         st.markdown(message_text)
