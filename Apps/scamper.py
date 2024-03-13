@@ -100,6 +100,7 @@ if st.button("Generate Ideas using SCAMPER"):
             status_box.update(label="Complete", state="complete", expanded=True)
             thread_messages = client.beta.threads.messages.list(st.session_state.thread.id)
             message_text = thread_messages.data[0].content[0].text.value
+            st.markdown(len(thread_messages)+"\n")
             st.markdown("### S-Substitute\n")
             st.markdown("#### _The substitute technique tends to provide alternative solutions for decision-makers to choose different solutions in order to reach the final action._\n")
             st.markdown(message_text)
