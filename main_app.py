@@ -11,7 +11,7 @@ show_pages(
             # Can use :<icon-name>: or the actual icon
             Page("pages/prob_statement.py", "Problem Statement Generator", "✏️"),
             # The pages appear in the order you pass them
-            Page("pages/scamper.py", "Brainstorming Buddy using SCAMPER", "💡")
+            Page("pages/scamper.py", "Brainstorming Buddy using SCAMPER", "💡"),
             # The pages appear in the order you pass them
             Page("pages/proto_persona.py", "Proto-Persona Creator", "🧑‍🤝‍🧑")
             # The pages appear in the order you pass them
