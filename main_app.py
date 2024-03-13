@@ -12,8 +12,6 @@ st.set_page_config(
 from st_pages import Page, add_page_title, show_pages
 
 
-add_page_title()
-
 show_pages(
         [
             Page("main_app.py","DTO Toolbox Home","🏠"),
