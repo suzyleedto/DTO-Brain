@@ -13,6 +13,8 @@ show_pages(
             # The pages appear in the order you pass them
             Page("pages/scamper.py", "Brainstorming Buddy using SCAMPER", "💡")
             # The pages appear in the order you pass them
+            Page("pages/proto_persona.py", "Proto-Persona Creator", "🧑‍🤝‍🧑")
+            # The pages appear in the order you pass them
             
         ]
     )
@@ -21,3 +23,4 @@ add_page_title("Welcome to your DTO Toolbox")  # Optional method to add title an
 st.page_link("main_app.py", label="Home", icon="🏠")
 st.page_link("pages/prob_statement.py", label="Problem Statement Generator", icon="✏️")
 st.page_link("pages/scamper.py", label = "Brainstorming Buddy using SCAMPER", icon="💡")
+st.page_link("pages/proto_persona.py", label = "Proto-Persona Creator", icon  = "🧑‍🤝‍🧑")
