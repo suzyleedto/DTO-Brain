@@ -11,13 +11,6 @@ st.set_page_config(
 
 from st_pages import Page, add_page_title, show_pages
 
-st.set_page_config(
-    page_title="DTO Toolkit Home",
-    page_icon="🛠️",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
 
 add_page_title()
 
