@@ -9,11 +9,11 @@ show_pages(
         [
             Page(path="main_app.py", name = "DTO Toolbox Home", icon = "🛠️"),
             # Can use :<icon-name>: or the actual icon
-            Page(path="pages/prob_statement.py", name="Problem Statement Generator", icon ="✏️"),
+            Page(path="pages/prob_statement.py", name="Problem Statement Generator"),
             # The pages appear in the order you pass them
-            Page(path="pages/scamper.py", name="Brainstorming Buddy using SCAMPER",icon = "💡"),
+            Page(path="pages/scamper.py", name="Brainstorming Buddy using SCAMPER"),
             # The pages appear in the order you pass them
-            Page(path = "pages/proto_persona.py", name = "Proto-Persona Creator", icon = "🧑‍🤝‍🧑")
+            Page(path = "pages/proto_persona.py", name = "Proto-Persona Creator")
             # The pages appear in the order you pass them
             
         ]
